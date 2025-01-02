@@ -9,8 +9,8 @@ namespace CompanyEmployees
         public MappingProfile()
         {
             CreateMap<Company, CompanyDto>()
-                .ForMember( c=> c.FullAddress,
-                opt => opt.MapFrom(x => string.Join(' ', x.Address, x.Country)));
+            .ForMember(c => c.FullAddress,
+             opt => opt.MapFrom(x => (x.Address ?? string.Empty).Trim() + " " + (x.Country ?? string.Empty).Trim()));
 
             CreateMap<Employee, EmployeeDto>();
             CreateMap<CompanyForCreationDto, Company>();
@@ -18,6 +18,7 @@ namespace CompanyEmployees
             CreateMap<EmployeeForUpdateDto, Employee>();
             CreateMap<CompanyForUpdateDto, Company>();
             CreateMap<EmployeeForUpdateDto, Employee>().ReverseMap();
+            CreateMap<UserForRegistrationDto, User>();
         }
     }
 }

@@ -12,8 +12,8 @@ using Repository;
 namespace CompanyEmployees.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20241230112846_AddedIdentity")]
-    partial class AddedIdentity
+    [Migration("20250102111231_AddedRolesToDb")]
+    partial class AddedRolesToDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -149,9 +149,11 @@ namespace CompanyEmployees.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -229,13 +231,13 @@ namespace CompanyEmployees.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "053b16c8-438c-44ed-b2d9-5730d074e8c6",
+                            Id = "8dbed900-9ec2-47d2-a32e-a317c1cbdd70",
                             Name = "Manager",
                             NormalizedName = "MANAGER"
                         },
                         new
                         {
-                            Id = "00d56f7d-d806-46cb-970e-8a4f94095b6f",
+                            Id = "dc5d5bc8-6395-478f-a968-ac98777c0b6d",
                             Name = "Administartor",
                             NormalizedName = "ADMINISTRATOR"
                         });

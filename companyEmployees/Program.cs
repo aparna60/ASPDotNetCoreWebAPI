@@ -84,8 +84,8 @@ builder.Services.ConfigureHttpCacheHeaders();
 builder.Services.AddMemoryCache();
 builder.Services.ConfigureRateLimitingOptions();
 builder.Services.AddHttpContextAccessor();
-//builder.Services.AddAuthentication();
-//builder.Services.ConfigureIdentity();
+builder.Services.AddAuthentication();
+builder.Services.ConfigureIdentity();
 var app = builder.Build();
 
 

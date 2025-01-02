@@ -54,7 +54,7 @@ namespace CompanyEmployees.Extensions
         public static void ConfigureServiceManager(this IServiceCollection services) =>
             services.AddScoped<IServiceManager, ServiceManager>();
 
-        public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
+       public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
            //services.AddDbContext<RepositoryContext>(opts=>
            //opts.UseSqlServer(configuration.GetConnectionString("sqlConnection")));
            services.AddSqlServer<RepositoryContext>((configuration.GetConnectionString("sqlConnection")));
@@ -158,19 +158,19 @@ namespace CompanyEmployees.Extensions
             services.AddSingleton<IProcessingStrategy,AsyncKeyLockProcessingStrategy>();
         }
 
-        //public static void ConfigureIdentity(this IServiceCollection services)
-        //{
-        //    var builder = services.AddIdentity<User, IdentityRole>(o =>
-        //    {
-        //        o.Password.RequireDigit = true;
-        //        o.Password.RequireLowercase = false;
-        //        o.Password.RequireUppercase = false;
-        //        o.Password.RequireNonAlphanumeric = false;
-        //        o.Password.RequiredLength = 10;
-        //        o.User.RequireUniqueEmail = true;
-        //    })
-        //    .AddEntityFrameworkStores<RepositoryContext>()
-        //    .AddDefaultTokenProviders();
-        //}
+        public static void ConfigureIdentity(this IServiceCollection services)
+        {
+            var builder = services.AddIdentity<User, IdentityRole>(o =>
+            {
+                o.Password.RequireDigit = true;
+                o.Password.RequireLowercase = false;
+                o.Password.RequireUppercase = false;
+                o.Password.RequireNonAlphanumeric = false;
+                o.Password.RequiredLength = 10;
+                o.User.RequireUniqueEmail = true;
+            })
+            .AddEntityFrameworkStores<RepositoryContext>()
+            .AddDefaultTokenProviders();
+        }
     }
 }
