@@ -3,6 +3,7 @@
 using CompanyEmployees.Presentation.ActionFilters;
 using CompanyEmployees.Presentation.ModelBinders;
 using Marvin.Cache.Headers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Service.Contracts;
@@ -23,6 +24,7 @@ namespace CompanyEmployees.Presentation.Controllers
 
 
         [HttpGet(Name ="GetCompanies")]
+        [Authorize(Roles ="Manager")]
         [ResponseCache(CacheProfileName = "120SecondsDuration")]
         public async Task<IActionResult> GetCompanies()
         {
